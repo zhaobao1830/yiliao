@@ -1,16 +1,10 @@
-const About = () => import('@/views/About')
-const Home = () => import('@/views/Home')
+const Login = () => import('@/views/login/Login')
 
 const routes = [
   {
     path: '/',
-    name: 'homw',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: About
+    name: 'Login',
+    component: Login
   }
 ]
 
