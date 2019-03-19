@@ -8,11 +8,14 @@ module.exports = {
   lintOnSave: true,
   publicPath: '/',
   productionSourceMap: false,
-  chainWebpack: (config) => {
+  chainWebpack(config) {
     config.resolve.alias
       .set('@', resolve('src'))
-      .set('lin', resolve('src/lin'))
       .set('assets', resolve('src/assets'))
+      .set('view', resolve('src/view'))
+      .set('config', resolve('src/config'))
+      .set('common', resolve('src/common'))
+      .set('components', resolve('src/components'))
   },
   configureWebpack: {
     resolve: {
