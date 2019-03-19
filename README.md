@@ -19,7 +19,15 @@
 
 │    ├───assets // 静态资源文件存放目录
 
+│    ├───common // 核心库
+
+│    │   │   utils // 各种工具函数
+
 │    ├───components // 布局组件及业务基础组件
+
+│    ├───config // fonfig配置项
+
+│    │   │   index // 前端自定义配置项
 
 │    ├───router // 前端路由
 
