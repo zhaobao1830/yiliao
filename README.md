@@ -19,15 +19,21 @@
 
 │    ├───assets // 静态资源文件存放目录
 
+│    ├───base // 基础组件 
+
 │    ├───common // 核心库
+
+│    │   │   config // 全局的基础配置
+
+│    │   │   filter // 全局过滤器
+
+│    │   │   mixin // 全局mixin
+
+│    │   │   models // model层
 
 │    │   │   utils // 各种工具函数
 
 │    ├───components // 布局组件及业务基础组件
-
-│    ├───config // fonfig配置项
-
-│    │   │   index // 前端自定义配置项
 
 │    ├───router // 前端路由
 
@@ -40,7 +46,6 @@
 │    ├───views // 业务组件
 
 │    │   App.vue // vue根组件
-
 
 │    │   main.js // webpack打包入口
 
