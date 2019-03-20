@@ -22,7 +22,7 @@
               </template>
             </el-input>
           </el-form-item>
-          <el-button @click="fromSubmit" type="primary" class="button-login">登录</el-button>
+          <el-button @click="throttleLogin" type="primary" class="button-login">登录</el-button>
         </el-form>
       </div>
     </div>
@@ -30,14 +30,16 @@
 </template>
 
 <script>
-  import request from 'common/utils/http'
-  import util from 'common/utils/util'
-  import config from 'common/config'
+  import Util from 'common/utils/util'
+  import Config from 'common/config'
+  import User from 'common/models/user'
+  import { mapActions, mapMutations } from 'vuex'
 
   export default {
     name: 'Login',
     data () {
       return {
+        throttleLogin: null, // 节流登录
         loading: false,
         labelPosition: 'right',
         labelWidth: '65px',
@@ -64,17 +66,39 @@
         }
       }
     },
+    created () {
+      this.throttleLogin = Util.throttle(this.login, this.await)
+    },
     mounted () {
       this.refreshCode()
     },
     methods: {
-      async fromSubmit () {
+      async login () {
         const { nickname, password } = this.formLogin
+        try {
+          this.loading = true
+          await User.getToken(nickname, password)
+          await this.getInformation()
+          this.loading = false
+          this.$router.push('/about')
+          this.$message.success('登录成功')
+        } catch (e) {
+          this.loading = false
+        }
       },
       refreshCode () {
-        this.formLogin.randomStr = util.randomLenNum(this.code.len)
-        this.code.src = `${config.baseUrl}/admin/code/${this.formLogin.randomStr}`
-      }
+        this.formLogin.randomStr = Util.randomLenNum(this.code.len)
+        this.code.src = `${Config.baseUrl}/admin/code/${this.formLogin.randomStr}`
+      },
+      getInformation () {},
+      ...mapActions(
+        ['setUserAndState']
+      ),
+      ...mapMutations(
+        {
+          setUserAuths: 'SET_USER_AUTHS',
+        }
+      )
     }
   }
 </script>
