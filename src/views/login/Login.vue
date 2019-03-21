@@ -5,7 +5,7 @@
     </div>
     <div class="login-from"
          v-loading="loading"
-         element-loading-background="rgba(0, 0, 0, 0)">>
+         element-loading-background="rgba(0, 0, 0, 0)">
       <div class="form-title">工作人员登陆</div>
       <div class="form-group">
         <el-form :label-position="labelPosition" :rules="rules" :label-width="labelWidth" :model="formLogin">
@@ -13,7 +13,7 @@
             <el-input v-model="formLogin.nickname"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input v-model="formLogin.password"></el-input>
+            <el-input type="password" v-model="formLogin.password"></el-input>
           </el-form-item>
           <el-form-item label="验证码" prop="code">
             <el-input v-model="formLogin.code">
@@ -44,8 +44,8 @@
         labelPosition: 'right',
         labelWidth: '65px',
         formLogin: {
-          nickname: '',
-          password: '',
+          nickname: 'super',
+          password: '123456',
           randomStr: '',
           code: ''
         },
@@ -90,15 +90,22 @@
         this.formLogin.randomStr = Util.randomLenNum(this.code.len)
         this.code.src = `${Config.baseUrl}/admin/code/${this.formLogin.randomStr}`
       },
-      getInformation () {},
-      ...mapActions(
-        ['setUserAndState']
-      ),
-      ...mapMutations(
-        {
-          setUserAuths: 'SET_USER_AUTHS',
+      async getInformation () {
+        try {
+          // 尝试获取用户信息
+          const user = await User.getAuths()
+          this.setUserAndState(user)
+          this.setUserAuths(user.auths)
+        } catch (e) {
+          console.log(e)
         }
-      )
+      },
+      ...mapMutations({
+          setUserAuths: 'SET_USER_AUTHS'
+      }),
+      ...mapActions([
+        'setUserAndState'
+      ])
     }
   }
 </script>
@@ -111,11 +118,12 @@
       width: 100%;
       height: 90px;
       line-height: 90px;
-      background-color: #1b2c5f;
+      background-color: rgba(25, 153, 215, 1);
       p{
         font-size: 30px;
         float: left;
         color: #fff;
+        margin-left: 50px;
       }
     }
     .login-from{
@@ -128,7 +136,7 @@
         height: 60px;
         line-height: 60px;
         font-size: 25px;
-        background-color: #245097;
+        background-color: rgba(25, 153, 215, 1);
         color: #fff;
       }
       .form-group{

@@ -1,9 +1,21 @@
+import homeRouter from './home-router'
+
 const Login = () => import('@/views/login/Login')
+const Home = () => import('@/views/home/Home')
 
 const routes = [
   {
     path: '/',
-    name: 'Login',
+    name: 'home',
+    redirect: '/about',
+    component: Home,
+    children: [
+      ...homeRouter
+    ]
+  },
+  {
+    path: '/login',
+    name: 'login',
     component: Login
   }
 ]

@@ -1,6 +1,8 @@
 import axios from 'axios'
 import config from 'common/config'
 import tip from 'common/utils/exception'
+import store from 'store'
+import { getToken } from './cookie'
 
 // 创建一个拥有通用配置的axios实例
 const http = axios.create({
@@ -8,6 +10,36 @@ const http = axios.create({
   transformResponse: [(data) => JSON.parse(data)], // 对返回的json进行处理
   timeout: 5000 // 请求超时
 })
+
+// 添加一个请求拦截器
+http.interceptors.request.use(
+  (requestConfig) => {
+    if (requestConfig.url === 'cms/user/refresh') {
+      const refreshToken = getToken('refresh_token')
+      if (refreshToken) {
+        requestConfig.headers.Authorization = refreshToken
+        return requestConfig
+      }
+    } else {
+      // 有access_token
+      const accessToken = getToken('access_token')
+      if (accessToken) {
+        requestConfig.headers.Authorization = accessToken
+        return requestConfig
+      }
+    }
+    return requestConfig
+  },
+  (error) => Promise.reject(error)
+)
+
+http.interceptors.request.use(
+  (requestConfig) => {
+     store.commit('SET_STOP_TIME', new Date().getTime())
+     return requestConfig
+  },
+  (error) => Promise.reject(error)
+)
 
 // 返回结果处理
 http.interceptors.response.use(

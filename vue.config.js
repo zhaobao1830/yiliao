@@ -15,6 +15,7 @@ module.exports = {
       .set('view', resolve('src/view'))
       .set('common', resolve('src/common'))
       .set('components', resolve('src/components'))
+      .set('store', resolve('src/store'))
   },
   configureWebpack: {
     resolve: {

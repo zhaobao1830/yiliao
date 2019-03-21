@@ -2,7 +2,7 @@
  * @param {number} hours
  */
 export function getDateAfterHours (hours) {
-  const now =new Date()
+  const now = new Date()
   return new Date(now.setHours(now.getHours() + hours))
 }
 
