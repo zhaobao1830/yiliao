@@ -17,7 +17,8 @@ module.exports = {
     'no-plusplus': 0, // 禁止使用++，--
     'linebreak-style': [0, 'error', 'windows'],
     'import/extensions': 0, // import不需要写文件扩展名
-    'camelcase': 0 // 忽略强制驼峰命名
+    'camelcase': 0, // 忽略强制驼峰命名
+    "no-trailing-spaces": 0 // 忽略语句后面出现的空格
   },
   parserOptions: {
     parser: 'babel-eslint'

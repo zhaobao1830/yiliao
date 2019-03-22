@@ -118,7 +118,7 @@
       width: 100%;
       height: 90px;
       line-height: 90px;
-      background-color: rgba(25, 153, 215, 1);
+      background-color: #3963bc;
       p{
         font-size: 30px;
         float: left;
@@ -136,7 +136,7 @@
         height: 60px;
         line-height: 60px;
         font-size: 25px;
-        background-color: rgba(25, 153, 215, 1);
+        background-color: #3963bc;
         color: #fff;
       }
       .form-group{

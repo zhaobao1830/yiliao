@@ -23,6 +23,12 @@ const mutations = {
       }
     }
     state.auths = _auths
+  },
+  [types.SET_SIDEBAR_LIST](state, payload) {
+    state.sideBarList = payload
+  },
+  [types.SET_DEFAULT_ACTIVE_TAB](state, payload) {
+    state.defaultActive = payload
   }
 }
 

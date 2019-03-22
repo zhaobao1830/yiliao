@@ -2,7 +2,8 @@
   <div style="height: 100%">
     <el-container>
       <el-aside :width="sideBarWidth">
-        <side-bar :isCollapse="isCollapse"></side-bar>
+        <side-bar :isCollapse="isCollapse"
+                  class="sidebar"></side-bar>
       </el-aside>
       <el-container class="el-container-right">
         <el-header>
@@ -33,7 +34,9 @@
     data () {
       return {
         isCollapse: false, // 左侧菜单栏是否折叠
-        sideBarWidth: '170px' // 左侧菜单栏展开的宽度
+        sideBarWidth: '170px', // 左侧菜单栏展开的宽度
+        foldState: false, // 控制左侧菜单栏按键
+        upState: false // 控制历史记录栏按键
       }
     },
     methods: {
@@ -43,7 +46,7 @@
         this.foldState = !this.foldState
       },
       // 控制历史记录折叠
-      changeReuseState() {
+      changeReuseState () {
         this.showReuseTab = !this.showReuseTab
         this.upState = !this.upState
         this.$refs.appMain.$el.style.minHeight = this.showReuseTab === false ? `${this.clientHeight - navBarHeight - marginHeight}px` : `${this.clientHeight - totalHeight}px`
@@ -60,6 +63,13 @@
 </script>
 
 <style scoped>
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
   .el-container-right{
     padding-bottom: 20px;
   }

@@ -67,7 +67,6 @@ export default class User {
    */
   static async getAuths () {
     const info = await get('cms/user/auths')
-    console.log(info)
     return new User(info.active, info.email, info.group_id, info.nickname, info.super, info.auths)
   }
 
