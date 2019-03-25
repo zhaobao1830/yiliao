@@ -25,9 +25,13 @@
   import {
     SideBar
   } from 'components/layout'
+  import layoutMixin from 'common/mixin/layout'
+  import { mapGetters } from 'vuex'
 
   const navBarHeight = 66 // header高度
+  const reuseTabHeight = 70 // 历史记录栏高度
   const marginHeight = 20 // 历史记录栏与舞台的间距
+  const totalHeight = navBarHeight + reuseTabHeight + marginHeight
 
   export default {
     name: 'Home',
@@ -55,6 +59,10 @@
           this.$refs.scroll.refresh()
         }, 400)
       }
+    },
+    mixins: [layoutMixin],
+    computed: {
+      ...mapGetters(['sideBarList'])
     },
     components: {
       SideBar

@@ -38,6 +38,7 @@
             </el-menu-item-group>
           </el-submenu>
           <el-menu-item :index="indexToString(index++)"
+                        @click="goto(ls.path)"
                         v-else
                         :key="ls.path">
             <img v-if="ls.meta.src"
@@ -74,6 +75,11 @@
       })
     },
     methods: {
+      goto (path) {
+        this.$router.push({
+          path
+        })
+      },
       // 筛选左侧菜单渲染数据
       filterSideBarList () {
         const filterRouter = [] // 根据用户权限，筛选用户能看到的菜单内容
@@ -82,7 +88,6 @@
         let hasOneLevelRouter = false // 是否添加过一级菜单
         let hasTwoLevelRouter = false // 是否添加过二级菜单
         let multipleTwoLevelRouter = 0 // 是否需要添加多个二级菜单
-        console.log(this.user)
         if (!this.user.isSuper) { // 如果不是超级管理员，做权限路由拦截
           for (let i = 0; i < homeRouterTwoLevel.length; i++) {
             // 判断是否只有一级菜单
@@ -149,7 +154,6 @@
       getSideBarList () {
         let layoutArr = []
         const routesArr = [...routes]
-        console.log(routesArr)
         const recursion = (a) => {
           for (const key in a) {
             if (Object.prototype.hasOwnProperty.call(a, key)) {
@@ -170,7 +174,6 @@
           }
         }
         recursion(layoutArr)
-        console.log(layoutArr)
         return layoutArr
       },
       // 路由标记位
