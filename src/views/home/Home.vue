@@ -8,12 +8,13 @@
       <el-container class="el-container-right">
         <el-header>
           <div class="operate">
-            <i class="iconfont icon-fold"
+            <i class="iconfont icon-fold ccc"
                :class="{rotate: foldState}"
                @click="changeSlidebarState"></i>
             <i class="iconfont icon-up"
                :class="{rotate: upState}"
                @click="changeReuseState"></i>
+            <nav-bar></nav-bar>
           </div>
         </el-header>
       </el-container>
@@ -23,6 +24,7 @@
 
 <script>
   import {
+    NavBar,
     SideBar
   } from 'components/layout'
   import layoutMixin from 'common/mixin/layout'
@@ -65,13 +67,16 @@
       ...mapGetters(['sideBarList'])
     },
     components: {
+      NavBar,
       SideBar
     }
   }
 </script>
 
-<style scoped>
-  .sidebar {
+<style scoped lang="scss" type="text/scss">
+  @import "~assets/styles/index";
+
+  .sidebar{
     position: absolute;
     top: 0;
     left: 0;
@@ -80,5 +85,22 @@
   }
   .el-container-right{
     padding-bottom: 20px;
+    .operate{
+      display: flex;
+      align-items: center;
+      background-color: $navbar-background;
+      padding-left: 20px;
+      .iconfont{
+        font-weight: 500;
+        color: #fff;
+        cursor: pointer;
+        transform: rotate(0deg);
+        transition: all 0.3s linear;
+        margin-right: 10px;
+        &:hover {
+          color: #3963bc;
+        }
+      }
+    }
   }
 </style>

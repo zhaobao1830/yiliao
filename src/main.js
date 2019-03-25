@@ -7,11 +7,15 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+import Lin1px from '@/base/base-1px/base-1px'
+
 import 'assets/styles/index.scss'
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+
+Vue.component('lin-1px', Lin1px)
 
 new Vue({
   router,
