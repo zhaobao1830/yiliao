@@ -27,7 +27,7 @@
     NavBar,
     SideBar
   } from 'components/layout'
-  import layoutMixin from 'common/mixin/layout'
+  import layoutMixin from 'lin/mixin/layout'
   import { mapGetters } from 'vuex'
 
   const navBarHeight = 66 // header高度
@@ -52,7 +52,7 @@
         this.foldState = !this.foldState
       },
       // 控制历史记录折叠
-      changeReuseState () {
+      changeReuseState() {
         this.showReuseTab = !this.showReuseTab
         this.upState = !this.upState
         this.$refs.appMain.$el.style.minHeight = this.showReuseTab === false ? `${this.clientHeight - navBarHeight - marginHeight}px` : `${this.clientHeight - totalHeight}px`

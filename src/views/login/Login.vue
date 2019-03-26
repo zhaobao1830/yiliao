@@ -30,9 +30,9 @@
 </template>
 
 <script>
-  import Util from 'common/utils/util'
-  import Config from 'common/config'
-  import User from 'common/models/user'
+  import Util from 'lin/utils/util'
+  import Config from '@/config'
+  import User from 'lin/models/user'
   import { mapActions, mapMutations } from 'vuex'
 
   export default {

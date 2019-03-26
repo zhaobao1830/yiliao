@@ -21,9 +21,15 @@
 
 │    ├───base // 基础组件 
 
-│    ├───common // 核心库
+│    │   │   line // 1像素横线
 
-│    │   │   config // 全局的基础配置
+│    ├───components // 布局组件及业务基础组件
+
+│    │   │   layout // layout布局组件
+
+│    ├───config // 全局基础配置文件
+
+│    ├───lin // 核心库
 
 │    │   │   filter // 全局过滤器
 
@@ -33,9 +39,9 @@
 
 │    │   │   utils // 各种工具函数
 
-│    ├───components // 布局组件及业务基础组件
-
 │    ├───router // 前端路由
+
+│    │   │   home-router.js // home的子路由配置
 
 │    │   │   index.js // vue-router入口文件
 

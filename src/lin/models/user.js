@@ -1,4 +1,4 @@
-import { get, post } from 'common/utils/http'
+import { get, post } from 'lin/utils/http'
 import { saveTokens, saveAccessToken } from '../utils/cookie'
 
 const ACTIVE_VALUE = 1

@@ -13,7 +13,7 @@ module.exports = {
       .set('@', resolve('src'))
       .set('assets', resolve('src/assets'))
       .set('view', resolve('src/view'))
-      .set('common', resolve('src/common'))
+      .set('lin', resolve('src/lin'))
       .set('components', resolve('src/components'))
       .set('store', resolve('src/store'))
   },

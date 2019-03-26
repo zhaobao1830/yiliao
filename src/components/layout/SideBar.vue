@@ -56,7 +56,7 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import Utils from 'common/utils/util'
+  import Utils from 'lin/utils/util'
   import homeRouter from '@/router/home-router'
   import routes from '@/router/routes'
 

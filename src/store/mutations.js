@@ -40,10 +40,7 @@ const mutations = {
   async [types.ADD_TAB](state, payload) {
     if (!(payload instanceof Array)) {
       const { tabs } = state
-      const flag = await tabs.find(el => el.path === payload.path)
-      if (!flag) {
-        state.tabs = [payload, ...tabs]
-      }
+      state.tabs = [payload, ...tabs]
     } else {
       state.tabs = []
     }

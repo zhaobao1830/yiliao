@@ -7,12 +7,7 @@
              class="nav-avatar">
       </span>
       <el-dropdown-menu slot="dropdown"
-                        class="user-box"
-                        style="border:none;
-                        background-color:none;
-                        background:transparent;
-                        margin-bottom:0;
-                        padding-bottom:0;">
+                        class="user-box">
         <div class="user-info">
           <img src="../../assets/img/user/user.png"
                class="avatar"
@@ -23,11 +18,13 @@
           </div>
         </div>
         <ul class="dropdown-box">
-          <li class=" password">
+          <li class=" password"
+              @click="changePassword">
             <i class="iconfont icon-weibaoxitongshangchuanlogo-"></i>
             <span>修改登录密码</span>
           </li>
-          <li class="account">
+          <li class="account"
+              @click="outLogin">
             <i class="iconfont icon-tuichu"></i>
             <span>退出账户</span>
           </li>
@@ -35,7 +32,9 @@
       </el-dropdown-menu>
     </el-dropdown>
     <el-dialog title="修改密码"
-               :append-to-body="true">
+               append-to-body
+               :before-close="handleClose"
+               :visible.sync="dialogFormVisible">
       <lin-1px style="margin-top:-20px;margin-bottom:20px;"></lin-1px>
       <el-form :model="form"
                status-icon
@@ -47,25 +46,24 @@
                       prop="old_password">
           <el-input type="password"
                     v-model="form.old_password"
-                    autocomplete="off"></el-input>
+                    auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="新密码"
                       prop="new_password">
           <el-input type="password"
                     v-model="form.new_password"
-                    autocomplete="off"></el-input>
+                    auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="确认密码"
-                      prop="confirm_password"
-                      label-position="top">
+                      prop="confirm_password">
           <el-input type="password"
                     v-model="form.confirm_password"
-                    autocomplete="off"></el-input>
+                    auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary"
-                     >保存</el-button>
-          <el-button>重置</el-button>
+                     @click="submitForm('form')">保存</el-button>
+          <el-button @click="resetForm('form')">重置</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -73,12 +71,13 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
+  import User from 'lin/models/user'
 
   export default {
     name: 'User',
     data () {
-      const oldPassword = (rule, value, callback) => { // eslint-disable-line
+      const oldPassword = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('原始密码不能为空'))
         }
@@ -126,6 +125,45 @@
         }
       }
     },
+    methods: {
+      changePassword () {
+        this.dialogFormVisible = true
+      },
+      handleClose (done) {
+        this.dialogFormVisible = false
+        this.resetForm('form')
+        done()
+      },
+      submitForm (formName) {
+        if (this.form.old_password === this.form.new_password) {
+          this.$message.error('新密码不能与原始密码一样')
+          return
+        }
+        this.$refs[formName].validate(async (valid) => { // eslint-disable-line
+          if (valid) {
+            const res = await User.updatePassword(this.form)
+            if (res.error_code === 0) {
+              this.$message.success(`${res.msg}`)
+              this.resetForm(formName)
+              this.dialogFormVisible = false
+            }
+          } else {
+            console.log('error submit!!')
+            this.$message.error('请填写正确的信息')
+            return false
+          }
+        })
+      },
+      resetForm (formName) {
+        this.$refs[formName].resetFields()
+      },
+      outLogin () {
+        this.loginOut()
+        const { origin } = window.location
+        window.location.href = origin
+      },
+      ...mapActions(['loginOut'])
+    },
     computed: {
       title () {
         const { isSuper } = this.user
@@ -155,8 +193,11 @@
   .user-box {
     width: 326px;
     border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background-color: transparent;
     .user-info {
-      background-image: url("../../assets/img/user/user-bg.png");
+      background-image: url("~assets/img/user/user-bg.png");
       background-size: 100% 100%;
       transform: translateY(-3px);
       border-top-left-radius: 4px;

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import config from 'common/config'
-import tip from 'common/utils/exception'
+import config from '@/config'
+import tip from 'lin/utils/exception'
 import store from 'store'
 import { getToken } from './cookie'
 
