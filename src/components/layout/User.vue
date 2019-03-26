@@ -179,7 +179,7 @@
 </script>
 
 <style type="text/scss" lang="scss" socped>
-  @import "~assets/styles/variable.scss";
+  @import "~assets/styles/index.scss";
 
   .el-dropdown-link {
     cursor: pointer;

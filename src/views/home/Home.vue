@@ -17,6 +17,10 @@
             <nav-bar></nav-bar>
           </div>
         </el-header>
+        <el-main ref="main">
+          <app-main ref="appMain"
+                    class="app-main"></app-main>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -25,7 +29,8 @@
 <script>
   import {
     NavBar,
-    SideBar
+    SideBar,
+    AppMain
   } from 'components/layout'
   import layoutMixin from 'lin/mixin/layout'
   import { mapGetters } from 'vuex'
@@ -45,14 +50,29 @@
         upState: false // 控制历史记录栏按键
       }
     },
+    mounted () {
+      const _this = this
+      this.setResize()
+      // 监测屏幕宽度 折叠左侧菜单栏
+      window.onresize = function temp() {
+        _this.setResize()
+        if (_this.clientWidth <= 768) { // 页面宽度 768
+          if (_this.isCollapse === false) {
+            _this.isCollapse = true
+          }
+        } else if (_this.isCollapse === true) {
+          _this.isCollapse = false
+        }
+      }
+    },
     methods: {
       // 控制菜单折叠
-      changeSlidebarState() {
+      changeSlidebarState () {
         this.isCollapse = !this.isCollapse
         this.foldState = !this.foldState
       },
       // 控制历史记录折叠
-      changeReuseState() {
+      changeReuseState () {
         this.showReuseTab = !this.showReuseTab
         this.upState = !this.upState
         this.$refs.appMain.$el.style.minHeight = this.showReuseTab === false ? `${this.clientHeight - navBarHeight - marginHeight}px` : `${this.clientHeight - totalHeight}px`
@@ -60,6 +80,16 @@
         setTimeout(() => {
           this.$refs.scroll.refresh()
         }, 400)
+      },
+      // 响应页面的宽度高度变化
+      setResize() {
+        this.clientHeight = document.body.clientHeight
+        this.$refs.appMain.$el.style.minHeight = `${this.clientHeight - totalHeight + 20}px`
+      }
+    },
+    watch: {
+      isCollapse () {
+        this.sideBarWidth = this.isCollapse === false ? '170px' : '50px'
       }
     },
     mixins: [layoutMixin],
@@ -68,7 +98,8 @@
     },
     components: {
       NavBar,
-      SideBar
+      SideBar,
+      AppMain
     }
   }
 </script>
@@ -101,6 +132,15 @@
           color: #3963bc;
         }
       }
+    }
+    .wrapper {
+      height: 100%;
+      overflow: hidden;
+    }
+    .app-main {
+      background: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
     }
   }
 </style>

@@ -1,3 +1,6 @@
-@import "~assets/styles/reset";
-@import "~assets/styles/elementUi";
-@import "~assets/styles/variable";
+@import "./realize/reset";
+@import "./realize/elementUi";
+@import "./realize/variable";
+@import "./realize/mixin";
+@import "./realize/transition";
+@import "./realize/animation";

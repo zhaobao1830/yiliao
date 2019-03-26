@@ -11,6 +11,7 @@
     <div class="app-sidebar-second">
       <el-menu class="el-menu-vertical-demo"
                ref="meun"
+               :collapse="isCollapse"
                :default-active="defaultActive"
                background-color="#192A5E"
                text-color="rgba(196,201,210,1)"
@@ -197,7 +198,7 @@
 </script>
 
 <style scoped lang="scss" type="text/scss">
-  @import "~assets/styles/variable";
+  @import "~assets/styles/index.scss";
 
   .app-sidebar{
     background: #192a5e;
@@ -209,8 +210,8 @@
       align-items: center;
       font-size: 30px;
       color: #fff;
-      transition: all 0.5s ease-in-out;
       background-color: #122150;
+      transition: all 0.3s linear;
       img {
         width: 110px;
         height: 60px;
