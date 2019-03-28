@@ -1,6 +1,8 @@
-@import "./realize/reset";
-@import "./realize/elementUi";
-@import "./realize/variable";
-@import "./realize/mixin";
-@import "./realize/transition";
-@import "./realize/animation";
+@import "./realize/reset.scss";
+@import "./realize/elementUi.scss";
+@import "./realize/variable.scss";
+@import "./realize/mixin.scss";
+@import "./realize/transition.scss";
+@import "./realize/animation.scss";
+
+$navbar-background: #162557;

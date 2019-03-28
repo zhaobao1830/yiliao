@@ -8,7 +8,7 @@
       <el-container class="el-container-right">
         <el-header>
           <div class="operate">
-            <i class="iconfont icon-fold ccc"
+            <i class="iconfont icon-fold"
                :class="{rotate: foldState}"
                @click="changeSlidebarState"></i>
             <i class="iconfont icon-up"
@@ -76,10 +76,6 @@
         this.showReuseTab = !this.showReuseTab
         this.upState = !this.upState
         this.$refs.appMain.$el.style.minHeight = this.showReuseTab === false ? `${this.clientHeight - navBarHeight - marginHeight}px` : `${this.clientHeight - totalHeight}px`
-        // 因为动画效果有延时，所以需要重新渲染scroll
-        setTimeout(() => {
-          this.$refs.scroll.refresh()
-        }, 400)
       },
       // 响应页面的宽度高度变化
       setResize() {
@@ -104,9 +100,7 @@
   }
 </script>
 
-<style scoped lang="scss" type="text/scss">
-  @import "~assets/styles/index";
-
+<style scoped lang="scss">
   .sidebar{
     position: absolute;
     top: 0;
@@ -132,10 +126,10 @@
           color: #3963bc;
         }
       }
-    }
-    .wrapper {
-      height: 100%;
-      overflow: hidden;
+      .rotate {
+        transform: rotate(180deg);
+        transition: all 0.3s linear;
+      }
     }
     .app-main {
       background: white;
