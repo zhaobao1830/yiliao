@@ -45,7 +45,7 @@
     data () {
       return {
         isCollapse: false, // 左侧菜单栏是否折叠
-        sideBarWidth: '170px', // 左侧菜单栏展开的宽度
+        sideBarWidth: '256px', // 左侧菜单栏展开的宽度
         foldState: false, // 控制左侧菜单栏按键
         upState: false // 控制历史记录栏按键
       }
@@ -101,6 +101,8 @@
 </script>
 
 <style scoped lang="scss">
+  @import '~assets/styles/index.scss';
+
   .sidebar{
     position: absolute;
     top: 0;

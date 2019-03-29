@@ -43,8 +43,13 @@ http.interceptors.request.use(
 
 // 返回结果处理
 http.interceptors.response.use(
-  res => res.data,
+  (res) => {
+    console.log('uuuuuuuuuuuu')
+    console.log(res)
+    return res.data
+  },
   (error) => {
+    console.log('yyyyyyyyyyyyyyyyyyy')
     tip(error)
   }
 )

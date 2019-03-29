@@ -1,12 +1,8 @@
 <template>
   <div class="app-sidebar">
-    <div class="logo"
-         v-if="!isCollapse">
-      <img src="~assets/img/logo.png">
-    </div>
-    <div class="mobile-logo"
-         v-else>
+    <div class="logo">
       <img src="~assets/img/mobile-logo.png">
+      <h1 v-show="!isCollapse">退役军人信访管理系统</h1>
     </div>
     <div class="app-sidebar-second">
       <el-menu class="el-menu-vertical-demo"
@@ -205,29 +201,24 @@
     padding-right: 0px;
     .logo {
       width: $sidebar-width;
+      height: 64px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-size: 30px;
-      color: #fff;
+      vertical-align: center;
       background-color: #122150;
-      transition: all 0.3s linear;
+      transition: all 0.5s linear;
       img {
-        width: 110px;
-        height: 60px;
-        padding: 3px 0px;
-        transition: all 0.3s linear;
+        width: 32px;
+        height: 32px;
+        padding-left: 14px;
       }
-    }
-    .mobile-logo {
-      width: 50px;
-      background-color: #122150;
-      transition: all 0.3s linear;
-      img {
-        width: 40px;
-        height: 40px;
-        padding: 13px 5px;
-        transition: all 0.3s linear;
+      h1{
+        margin: 0 0 0 12px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 18px;
+        font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
+        vertical-align: middle;
       }
     }
     .app-sidebar-second{
