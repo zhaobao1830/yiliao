@@ -123,7 +123,7 @@
         font-size: 30px;
         float: left;
         color: #fff;
-        margin-left: 50px;
+        margin:0 0 0 50px;
       }
     }
     .login-from{

@@ -44,12 +44,9 @@ http.interceptors.request.use(
 // 返回结果处理
 http.interceptors.response.use(
   (res) => {
-    console.log('uuuuuuuuuuuu')
-    console.log(res)
     return res.data
   },
   (error) => {
-    console.log('yyyyyyyyyyyyyyyyyyy')
     tip(error)
   }
 )
@@ -80,4 +77,34 @@ export function get(url, params = {}) {
     url,
     params
   })
+}
+
+/**
+* @param {string} url
+* @param {object} data
+* @param {object} params
+*/
+export function put(url, data = {}, params = {}) {
+  return http({
+    method: 'put',
+    url,
+    params,
+    data
+  })
+}
+
+/**
+ * @param {string} url
+ * @param {object} params
+ */
+export function _delete(url, params = {}) {
+  return http({
+    method: 'delete',
+    url,
+    params
+  })
+}
+
+export async function refreshRequest(response) {
+  return http(response)
 }

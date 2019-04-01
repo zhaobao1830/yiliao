@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%">
     <el-container>
-      <el-aside :width="sideBarWidth">
+      <el-aside :width="sideBarWidth" class="elaside">
         <side-bar :isCollapse="isCollapse"
                   class="sidebar"></side-bar>
       </el-aside>
@@ -16,6 +16,9 @@
                @click="changeReuseState"></i>
             <nav-bar></nav-bar>
           </div>
+          <el-collapse-transition>
+            <reuse-tab v-show="showReuseTab"></reuse-tab>
+          </el-collapse-transition>
         </el-header>
         <el-main ref="main">
           <app-main ref="appMain"
@@ -30,10 +33,12 @@
   import {
     NavBar,
     SideBar,
-    AppMain
+    AppMain,
+    ReuseTab
   } from 'components/layout'
   import layoutMixin from 'lin/mixin/layout'
   import { mapGetters } from 'vuex'
+  import ElCollapseTransition from 'element-ui/lib/transitions/collapse-transition'
 
   const navBarHeight = 66 // header高度
   const reuseTabHeight = 70 // 历史记录栏高度
@@ -47,7 +52,8 @@
         isCollapse: false, // 左侧菜单栏是否折叠
         sideBarWidth: '256px', // 左侧菜单栏展开的宽度
         foldState: false, // 控制左侧菜单栏按键
-        upState: false // 控制历史记录栏按键
+        upState: false, // 控制历史记录栏按键
+        showReuseTab: true // 是否显示历史记录栏
       }
     },
     mounted () {
@@ -85,7 +91,7 @@
     },
     watch: {
       isCollapse () {
-        this.sideBarWidth = this.isCollapse === false ? '170px' : '50px'
+        this.sideBarWidth = this.isCollapse === false ? '256px' : '50px'
       }
     },
     mixins: [layoutMixin],
@@ -93,9 +99,11 @@
       ...mapGetters(['sideBarList'])
     },
     components: {
+      ElCollapseTransition,
       NavBar,
       SideBar,
-      AppMain
+      AppMain,
+      ReuseTab
     }
   }
 </script>
@@ -103,12 +111,15 @@
 <style scoped lang="scss">
   @import '~assets/styles/index.scss';
 
-  .sidebar{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
+  .elaside{
+    position: relative;
+    .sidebar{
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
   }
   .el-container-right{
     padding-bottom: 20px;
@@ -118,6 +129,7 @@
       background-color: $navbar-background;
       padding-left: 20px;
       .iconfont{
+        font-size: 16px;
         font-weight: 500;
         color: #fff;
         cursor: pointer;
@@ -133,10 +145,14 @@
         transition: all 0.3s linear;
       }
     }
-    .app-main {
-      background: white;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+    .el-main {
+      overflow-y: auto;
+      position: relative;
+      .app-main {
+        background: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
     }
   }
 </style>
