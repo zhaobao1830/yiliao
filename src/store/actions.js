@@ -1,4 +1,5 @@
 import * as types from './mutation-types'
+import { removeToken } from '@/lin/utils/cookie'
 
 export const setUserAndState = function ({ commit }, user) {
   // 如果登陆成功，设置logined标志位
@@ -8,9 +9,8 @@ export const setUserAndState = function ({ commit }, user) {
 }
 
 export const loginOut = function ({ commit }) {
-  commit(types.ADD_MENU_TAB, [])
+  removeToken()
   commit(types.ADD_TAB, [])
-  commit(types.SET_SIDEBAR_LIST, [])
   commit(types.REMOVE_LOGINED, false)
 }
 

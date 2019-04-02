@@ -29,20 +29,17 @@ const mutations = {
     state.auths = _auths
   },
 
-  [types.SET_SIDEBAR_LIST](state, payload) {
-    state.sideBarList = payload
-  },
-
   [types.SET_DEFAULT_ACTIVE_TAB](state, payload) {
     state.defaultActive = payload
   },
 
-  async [types.ADD_TAB](state, payload) {
+  [types.ADD_TAB](state, payload) {
     if (!(payload instanceof Array)) {
       const { tabs } = state
-      const flag = await tabs.find(el => el.path === payload.path)
+      const flag = tabs.find(el => el.path === payload.path)
+      console.log(payload)
       if (!flag) {
-        state.tabs = [payload, ...tabs]
+        state.tabs.push(payload)
       }
     } else {
       state.tabs = []

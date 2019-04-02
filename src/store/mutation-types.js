@@ -8,8 +8,6 @@ export const SET_USER_AUTHS = 'SET_USER_AUTHS'
 
 export const SET_STOP_TIME = 'SET_STOP_TIME'
 
-export const SET_SIDEBAR_LIST = 'SET_SIDEBAR_LIST'
-
 export const SET_DEFAULT_ACTIVE_TAB = 'SET_DEFAULT_ACTIVE_TAB'
 
 export const ADD_TAB = 'ADD_TAB'
