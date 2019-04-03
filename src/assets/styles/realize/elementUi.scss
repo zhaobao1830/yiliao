@@ -1,4 +1,99 @@
 @import './variable.scss';
+
+// checkbox
+.module-box .module .el-checkbox__label {
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.module-box .is-checked .el-checkbox__label {
+  color: $theme;
+}
+
+.el-checkbox {
+  color: #666666;
+}
+.permissions-li .is-checked .el-checkbox__label {
+  color: $theme;
+}
+
+.el-checkbox__inner {
+  border: 1px solid #c4c0d2;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background: $theme;
+  border: 1px solid $theme;
+}
+
+// radio
+.el-radio__label {
+  color: #333333;
+}
+
+.el-radio-group {
+  padding-top: 15px;
+  width: 100%;
+}
+
+.el-radio {
+  width: 33%;
+  margin-left: 0px !important;
+  margin-bottom: 20px;
+}
+
+.el-radio__inner {
+  border: 1px solid #c4c0d2 !important;
+}
+
+.el-radio__input.is-checked .el-radio__inner {
+  background: $theme;
+  border: none !important;
+}
+
+.el-radio__input.is-checked + .el-radio__label {
+  color: $theme;
+}
+
+@media screen and (max-width: 980px) {
+  .el-radio {
+    width: 50%;
+  }
+}
+
+// form
+.el-form-item__label {
+  color: #333333;
+  font-weight: 500;
+  padding: 0 20px 0 0;
+  font-size: 14px;
+}
+
+.el-form-item__content {
+  margin-bottom: 20px;
+}
+
+.el-form--label-top .el-form-item__label {
+  padding-bottom: 0px !important;
+  color: $title-color;
+  font-weight: 500;
+}
+
+.el-form-item {
+  margin-bottom: 15px !important;
+}
+
+// pagination
+.el-pagination__editor.el-input .el-input__inner {
+  border-radius: 14px;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: $parent-title-color;
+  color: #fff;
+}
+
 // menu
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: $sidebar-width;
@@ -210,4 +305,103 @@
 
 .el-container {
   height: 100%;
+}
+
+// table
+.el-table {
+  border-left: 1px solid $table-border-color;
+  border-right: 1px solid $table-border-color;
+}
+
+.el-table thead tr th .cell {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.el-table__body {
+  tbody {
+    color: #555;
+    font-weight: 400;
+  }
+}
+
+thead tr {
+  height: 62px;
+}
+
+tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+th:not(:last-child) {
+  border: none !important;
+}
+
+td {
+  border: none !important;
+}
+
+table {
+  border-top: 1px solid #dee2e6;
+}
+
+.el-table .cell {
+  display: flex;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-left: 20px;
+}
+
+.el-table th.is-leaf,
+.el-table td {
+  border-bottom: none;
+}
+.el-tabs__item.is-active {
+  color: $theme;
+}
+
+.el-tabs__item {
+  color: #333;
+}
+
+// dialog
+.el-dialog__footer {
+  text-align: left;
+  padding-left: 30px;
+}
+
+.el-dialog__title {
+  color: $parent-title-color;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.el-dialog__header {
+  padding-left: 30px;
+}
+
+.el-dialog__body {
+  padding: 30px;
+}
+
+// input
+.el-input-group__append {
+  padding: 0 8px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: #ffffff;
+  border: 1px solid $theme;
+}
+
+
+.el-input-group--append .el-input__inner {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-right: none;
+  transition: all 0.2s linear;
+
+  &:focus {
+    transition: all 0.3s linear;
+  }
 }

@@ -1,4 +1,5 @@
 import adminConfig from './admin'
+import bookConfig from './book' // 引入图书管理路由文件
 import pluginsConfig from './plugins'
 import Utils from '@/lin/utils/util'
 
@@ -24,6 +25,7 @@ let homeRouter = [
     order: 1,
     right: ['查询所有日志']
   },
+  bookConfig,
   adminConfig
 ]
 

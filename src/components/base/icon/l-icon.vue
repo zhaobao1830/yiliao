@@ -39,7 +39,6 @@ export default {
     setIconButtonColor() {
       const { type } = this.$parent
       if (this.$parent.plain) {
-        console.log(type)
         switch (type) {
           case 'primary':
             this.buttonColor = '#3963BC'

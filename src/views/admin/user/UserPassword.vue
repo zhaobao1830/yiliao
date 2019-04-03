@@ -61,17 +61,17 @@ export default {
       loading: false,
       form: {
         new_password: '',
-        confirm_password: '',
+        confirm_password: ''
       },
       // 验证规则
       rules: {
         new_password: [
-          { validator: validatePassword, trigger: 'blur', required: true },
+          { validator: validatePassword, trigger: 'blur', required: true }
         ],
         confirm_password: [
-          { validator: validatePassword2, trigger: 'blur', required: true },
-        ],
-      },
+          { validator: validatePassword2, trigger: 'blur', required: true }
+        ]
+      }
     }
   },
   methods: {
@@ -101,7 +101,6 @@ export default {
             this.$message.error(`${res.msg}`)
           }
         } else {
-          console.log('error submit!!')
           this.$message.error('请填写正确的信息')
           this.$emit('handlePasswordResult', false)
           return false
@@ -111,7 +110,7 @@ export default {
     // 重置表单
     resetForm(formName) {
       this.$refs[formName].resetFields()
-    },
-  },
+    }
+  }
 }
 </script>

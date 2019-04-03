@@ -11,6 +11,9 @@ export default {
       this.setMenuDefaultActive()
     }
   },
+  computed: {
+    ...mapGetters(['sideBarList'])
+  },
   methods: {
     setMenuDefaultActive() {
       const { path } = this.$route
@@ -27,8 +30,5 @@ export default {
         }
       }
     }
-  },
-  computed: {
-    ...mapGetters['sideBarList']
   }
 }

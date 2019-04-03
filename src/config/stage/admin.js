@@ -38,7 +38,7 @@ const adminRouter = {
           filePath: 'views/admin/user/UserAdd.vue',
           right: ['超级管理员独有权限']
         }
-      ],
+      ]
     },
     {
       route: '/admin/group/list',

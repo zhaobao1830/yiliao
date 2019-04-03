@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <div class="login-top">
+      <img src="~assets/img/logo.png">
       <p>退役军人事务部网上信访管理系统</p>
     </div>
     <div class="login-from"
@@ -45,7 +46,7 @@
         labelWidth: '65px',
         formLogin: {
           nickname: 'super',
-          password: '123456',
+          password: 'lin123456',
           randomStr: '',
           code: ''
         },
@@ -119,11 +120,18 @@
       height: 90px;
       line-height: 90px;
       background-color: #3963bc;
+      img{
+        float: left;
+        width: 64px;
+        height: 64px;
+        margin-top: 13px;
+        margin-left: 35px;
+      }
       p{
         font-size: 30px;
         float: left;
         color: #fff;
-        margin:0 0 0 50px;
+        margin-left: 20px;
       }
     }
     .login-from{

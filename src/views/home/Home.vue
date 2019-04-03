@@ -20,6 +20,7 @@
             <reuse-tab v-show="showReuseTab"></reuse-tab>
           </el-collapse-transition>
         </el-header>
+        <menu-tab></menu-tab>
         <el-main ref="main">
           <app-main ref="appMain"
                     class="app-main"></app-main>
@@ -34,11 +35,10 @@
     NavBar,
     SideBar,
     AppMain,
-    ReuseTab
+    ReuseTab,
+    MenuTab
   } from 'components/layout'
   import layoutMixin from 'lin/mixin/layout'
-  import { mapGetters } from 'vuex'
-  import ElCollapseTransition from 'element-ui/lib/transitions/collapse-transition'
 
   const navBarHeight = 66 // header高度
   const reuseTabHeight = 70 // 历史记录栏高度
@@ -95,22 +95,17 @@
       }
     },
     mixins: [layoutMixin],
-    computed: {
-      ...mapGetters(['sideBarList'])
-    },
     components: {
-      ElCollapseTransition,
       NavBar,
       SideBar,
       AppMain,
-      ReuseTab
+      ReuseTab,
+      MenuTab
     }
   }
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/styles/index.scss';
-
   .elaside{
     position: relative;
     .sidebar{

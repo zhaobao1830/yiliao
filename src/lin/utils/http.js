@@ -1,8 +1,8 @@
 import axios from 'axios'
 import config from '@/config'
-import tip from 'lin/utils/exception'
-import store from 'store'
+import Vue from 'vue'
 import { getToken } from './cookie'
+import { handleException, handleError } from './exception'
 
 // 创建一个拥有通用配置的axios实例
 const http = axios.create({
@@ -35,7 +35,7 @@ http.interceptors.request.use(
 
 http.interceptors.request.use(
   (requestConfig) => {
-     store.commit('SET_STOP_TIME', new Date().getTime())
+     Vue.prototype.$_lin_jump()
      return requestConfig
   },
   (error) => Promise.reject(error)
@@ -43,14 +43,15 @@ http.interceptors.request.use(
 
 // 返回结果处理
 http.interceptors.response.use(
-  (res) => {
+  async (res) => {
+    if (res.status.toString().charAt(0) !== '2') {
+      const result = await handleException(res)
+      return result
+    }
     return res.data
   },
-  (error) => {
-    tip(error)
-  }
+  error => handleError(error)
 )
-
 export default http
 
 /**

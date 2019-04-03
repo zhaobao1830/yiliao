@@ -1,17 +1,16 @@
 <template>
   <div v-if="tabs.length">
-    <swiper :option="swiperOption" class="reuse-tab-wrap">
+    <swiper :options="swiperOption" class="reuse-tab-wrap">
       <swiper-slide
-        v-for="tag of tabs"
-        :key="tag.path"
-      >
+        v-for="(tag, index) in tabs"
+        :key="tag.path">
         <router-link
           class="reuse-tab-item"
           ref="tag"
           v-ripple
           :class="tag.path === $route.path? 'active':'' "
           :to="tag.path"
-        >
+          @contextmenu.prevent.native="onTags">
           <img v-if="tag.src" :src="tag.src" style="width:16px;">
           <i v-else :class="tag.icon"></i>
           <span style="padding: 0 5px;">{{ tag.title | filterTitle }}</span>
@@ -71,6 +70,8 @@
       clean(index) {
         this.REMOVE_TAB(index)
       },
+      // 鼠标右键的时候会触发这个方法
+      onTags () {},
       ...mapMutations([
         'ADD_TAB',
         'REMOVE_TAB'
@@ -87,8 +88,6 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "~assets/styles/index.scss";
-
   .swiper-slide {
     width: 130px;
     display: flex;
@@ -111,7 +110,6 @@
 
     .reuse-tab-item {
       box-sizing: border-box;
-      width: auto;
       border: 1px solid;
       border-radius: 2px;
       height: 30px;

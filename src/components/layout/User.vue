@@ -179,8 +179,6 @@
 </script>
 
 <style type="text/scss" lang="scss" socped>
-  @import "~assets/styles/index.scss";
-
   .el-dropdown-link {
     cursor: pointer;
     .nav-avatar {

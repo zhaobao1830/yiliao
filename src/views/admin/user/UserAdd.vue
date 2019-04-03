@@ -35,8 +35,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/styles/index.scss';
-
   .container {
     .title {
       height: 59px;

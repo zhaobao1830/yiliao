@@ -11,8 +11,15 @@ Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 
+// TODO: 处理持久化
 const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
+  storage: window.localStorage,
+  reducer: state => ({ // eslint-disable-line
+    tabs: state.tabs,
+    logined: state.logined,
+    user: state.user,
+    auths: state.auths,
+  })
 })
 
 export default new Vuex.Store({

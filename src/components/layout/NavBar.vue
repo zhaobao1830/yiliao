@@ -23,8 +23,6 @@
 </script>
 
 <style scoped lang="scss" type="text/scss">
-  @import "~assets/styles/index";
-
   .app-nav-bar{
     width: 100%;
     height: $navbar-height;

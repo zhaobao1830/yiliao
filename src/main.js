@@ -12,6 +12,8 @@ import Lin1px from 'components/base/line/lin-1px'
 import LButton from '@/components/base/button/lin-button'
 import LButtonGroup from '@/components/base/button/lin-button-group'
 import LIcon from '@/components/base/icon/lin-icon'
+import AuthorizeDirective from 'lin/directives/authorize'
+import '@/assets/styles/index.scss'
 
 // 全局过滤器
 Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
@@ -20,6 +22,7 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.use(plugins)
+Vue.use(AuthorizeDirective)
 
 Vue.component('lin-1px', Lin1px)
 Vue.component('l-button', LButton)

@@ -71,12 +71,6 @@
           path
         })
       },
-      // 判断是否有访问该路由的权限
-      hasPermission(router) {
-        if (router.meta && router.meta.auths) {
-          return this.auths.some(auth => router.meta.auths.indexOf(auth) > 0)
-        }
-      },
       // 路由标记位
       indexToString (num) {
         this.itemIndex = num
@@ -98,8 +92,6 @@
 </script>
 
 <style scoped lang="scss" type="text/scss">
-  @import "~assets/styles/index.scss";
-
   .app-sidebar{
     background: #192a5e;
     padding-right: 0px;

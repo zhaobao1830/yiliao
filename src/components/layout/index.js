@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 import AppMain from './AppMain'
 import ScrollBar from './ScrollBar'
 import ReuseTab from './ReuseTab'
+import MenuTab from './MenuTab'
 
 export {
   Breadcrumb,
@@ -11,5 +12,6 @@ export {
   SideBar,
   AppMain,
   ScrollBar,
-  ReuseTab
+  ReuseTab,
+  MenuTab
 }
